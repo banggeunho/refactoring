@@ -1,7 +1,13 @@
-// run.js
-const {spawn} = require('child_process');
-const path = require('path');
+// run.js (ESM용)
+import {spawn} from 'child_process';
+import path from 'path';
+import {fileURLToPath} from 'url';
 
+// __dirname 구현
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// 실행할 스크립트 이름
 const scriptName = process.argv[2];
 
 if (!scriptName) {

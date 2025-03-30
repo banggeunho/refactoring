@@ -1,5 +1,15 @@
-const plays = require('./plays.json');
-const invoices = require('./invoices.json');
+import * as fs from 'node:fs';
+import path from 'path';
+import {fileURLToPath} from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const playsPath = path.join(__dirname, 'plays.json');
+const invoicesPath = path.join(__dirname, 'invoices.json');
+
+const plays = JSON.parse(fs.readFileSync(playsPath, 'utf-8'));
+const invoices = JSON.parse(fs.readFileSync(invoicesPath, 'utf-8'));
 
 const result = statement(invoices, plays);
 console.log(result);
