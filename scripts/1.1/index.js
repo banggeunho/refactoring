@@ -5,6 +5,10 @@ const result = statement(invoices, plays);
 console.log(result);
 
 function statement(invoice) {
+    return renderPlainText(createStatement(invoice));
+}
+
+function createStatement(invoice) {
     const statementData = {};
 
     statementData.customer = invoice.customer;
@@ -12,7 +16,7 @@ function statement(invoice) {
     statementData.totalAmount = totalAmount(statementData);
     statementData.totalVolumeCredits = totalVolumeCredits(statementData);
 
-    return renderPlainText(statementData);
+    return statementData;
 }
 
 function enrichPerformance(aPerformance) {
