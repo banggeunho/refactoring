@@ -5,10 +5,11 @@ const result = statement(invoices, plays);
 console.log(result);
 
 function statement(invoice) {
-    return renderPlainText(invoice);
+    const statementData = {};
+    return renderPlainText(statementData, invoice);
 }
 
-function renderPlainText(invoice) {
+function renderPlainText(data, invoice) {
     let result = `청구 내역 (고객명: ${invoice.customer})\n`;
 
     for (let perf of invoice.performances) {
