@@ -9,7 +9,7 @@ function statement(invoice) {
 
     for (let perf of invoice.performances) {
         // 청구 내역을 출력한다.
-        result += ` ${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience}석)\n`;
+        result += `${playFor(perf).name}: ${usd(amountFor(perf))} (${perf.audience}석)\n`;
     }
 
     result += `총액: ${usd(totalAmount())}\n`;
@@ -24,19 +24,19 @@ function usd(aNumber) {
 }
 
 function totalAmount() {
-    let totalAmount = 0;
+    let result = 0;
     for (let perf of invoices.performances) {
-        totalAmount += amountFor(perf);
+        result += amountFor(perf);
     }
-    return totalAmount;
+    return result;
 }
 
 function totalVolumeCredits() {
-    let volumeCredits = 0;
+    let result = 0;
     for (let perf of invoices.performances) {
-        volumeCredits += volumeCreditsFor(perf);
+        result += volumeCreditsFor(perf);
     }
-    return volumeCredits;
+    return result;
 }
 
 function volumeCreditsFor(aPerformance) {
