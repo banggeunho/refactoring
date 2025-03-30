@@ -4,7 +4,7 @@ const invoices = require('./invoices.json');
 const result = statement(invoices, plays);
 console.log(result);
 
-function statement(invoice, plays) {
+function statement(invoice) {
     let totalAmount = 0;
     let volumeCredits = 0;
 
@@ -13,7 +13,7 @@ function statement(invoice, plays) {
         {style: 'currency', currency: 'USD', minimumFractionDigits: 2}).format;
 
     for (let perf of invoice.performances) {
-        const play = plays[perf.playID];
+        const play = playFor(perf);
 
         let thisAmount = amountFor(play, perf);
 
@@ -34,6 +34,10 @@ function statement(invoice, plays) {
     result += `적립 포인트: ${volumeCredits}점\n`;
 
     return result;
+}
+
+function playFor(aPerformance) {
+    return plays[aPerformance.playID];
 }
 
 function amountFor(play, aPerformance) {
