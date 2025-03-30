@@ -13,20 +13,18 @@ function statement(invoice) {
         {style: 'currency', currency: 'USD', minimumFractionDigits: 2}).format;
 
     for (let perf of invoice.performances) {
-        const play = playFor(perf);
-
-        let thisAmount = amountFor(play, perf);
+        let thisAmount = amountFor(playFor(perf), perf);
 
         // 포인트 적립
         volumeCredits += Math.max(perf.audience - 30, 0);
 
         // 희극 관객 5명마다 추가 포인트르 제공
-        if ('comedy' === play.type) {
+        if ('comedy' === playFor(perf).type) {
             volumeCredits += Math.floor(perf.audience / 5);
         }
 
         // 청구 내역을 출력한다.
-        result += ` ${play.name}: ${format(thisAmount / 100)} (${perf.audience}석)\n`;
+        result += ` ${playFor(perf).name}: ${format(thisAmount / 100)} (${perf.audience}석)\n`;
         totalAmount += thisAmount;
     }
 
